@@ -69,7 +69,7 @@ const Dashboard: React.FC = () => {
     // Fetch events from the backend
     const fetchEvents = async (): Promise<void> => {
         try {
-            const response = await axios.get('http://localhost:4000/events');
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/events`);
             setEvents(response.data);
             console.log(response.data);
         } catch (error) {
@@ -114,7 +114,7 @@ const Dashboard: React.FC = () => {
         };
 
         try {
-            await axios.post('http://localhost:4000/new-event', event);
+            await axios.post(`${process.env.REACT_APP_API_URL}/new-event`, event);
             setShowEventModal(false);
             setNewEvent({ summary: '', date: '', startTime: '', endTime: '' });
             fetchEvents();
