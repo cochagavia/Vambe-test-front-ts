@@ -1,0 +1,332 @@
+.dashboard-container {
+    max-width: 100%;
+    margin: 0;
+    padding: 20px;
+    background-color: #ffffff;
+    min-height: 100vh;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+.header-left h1 {
+    margin: 0;
+    color: #3c4043;
+    font-size: 1.8rem;
+}
+
+.calendar-grid {
+    display: flex;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    height: calc(100vh - 120px);
+    position: relative;
+    z-index: 1;
+}
+
+.day-column {
+    flex: 1;
+    min-width: 120px;
+    border-right: 1px solid #e0e0e0;
+    position: relative;
+    z-index: 1;
+}
+
+.day-column:last-child .event-card .event-hover {
+    left: auto;
+    right: 105%; /* Ajustar para que no se corte en la última columna */
+}
+
+.day-header {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #f8f9fa;
+}
+
+.day-name {
+    font-weight: 500;
+    color: #70757a;
+    text-transform: uppercase;
+}
+
+.day-date {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #3c4043;
+}
+
+.logout-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+    height: 36px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-button:hover {
+    background-color: #c82333;
+}
+
+.event-card {
+    position: relative;
+    margin: 4px;
+    padding: 8px;
+    background-color: #4285f4;
+    color: white;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 1;
+}
+
+.event-card:hover {
+    background-color: #3367d6;
+    transform: scale(1.02);
+}
+
+.event-time {
+    font-size: 0.8rem;
+    opacity: 0.9;
+    margin-bottom: 2px;
+    white-space: nowrap;
+}
+
+.event-title {
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.add-event-button {
+    background-color: #34a853;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 16px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+    height: 36px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-event-button:hover {
+    background-color: green;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 24px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #3c4043;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.save-button {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cancel-button {
+    background-color: #fff;
+    color: #3c4043;
+    border: 1px solid #e0e0e0;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.hover-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 99999;
+}
+
+.event-hover {
+    position: absolute;
+    transform: translateY(-50%);
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 12px 16px;
+    min-width: 250px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    color: #333;
+    border: 1px solid #e0e0e0;
+}
+
+.hover-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.hover-time, .hover-title {
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.hover-time strong, .hover-title strong {
+    color: #4285f4;
+    margin-right: 4px;
+}
+
+/* Ensure the hover doesn't get cut off at the edges */
+.day-column {
+    flex: 1;
+    min-width: 120px;
+    border-right: 1px solid #e0e0e0;
+    position: relative; /* Necesario para que el hover se posicione correctamente dentro de la columna */
+    z-index: 1;
+}
+
+/* Add a subtle animation for the hover appearance */
+.event-hover {
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50%) translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+    }
+}
+
+/* Asegurarse de que ningún contenedor interfiera */
+:global(*) {
+    transform: none !important;
+    perspective: none !important;
+    isolation: auto !important;
+    contain: none !important;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;  /* Space between buttons */
+}
+
+.event-button {
+    /* Add any specific button styling here */
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-event-button {
+    background-color: #34a853;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 80px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+    height: 36px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-event-button:hover {
+    background-color: green;
+}
+
+.logout-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+    height: 36px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-button:hover {
+    background-color: #c82333;
+}
